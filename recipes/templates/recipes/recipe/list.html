@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Recipes{% endblock %}
+{% block content %}
+<h1>Recipes</h1>
+<div id="recipe-list">
+    {% for recipe in recipes %}
+    <div class="recipe">
+        <div class="info">
+        <a href="{{ recipe.get_absolute_url }}" class="title">
+        {{ recipe.title }}
+        </a>
+        <a href=" {% url 'recipes:update' recipe.id %}">Update</a>
+        <a href=" {% url 'recipes:delete' recipe.id %}">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

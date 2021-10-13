@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Recipes{% endblock %}
+{% block content %}
+<h1>Update Recipe</h1>
+<div class="main">
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form as paragraph -->
+        {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+
+</div>
+{% endblock %}

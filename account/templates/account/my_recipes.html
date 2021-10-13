@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <h1>Yummy</h1>
+    {% with total_recipes_created=request.user.recipes_created.count %}
+        <p>Welcome to your recipes. You have made {{ total_recipes_created }} recipe{{ total_recipes_created| pluralize }}.</p>
+    {% endwith %}
+    <p>You can <a href="{% url 'password_change' %}">change your password</a>.</p>
+    <p>You can <a href="{% url 'recipes:create' %}">Add New Recipe</a>.</p>
+{% endblock %}

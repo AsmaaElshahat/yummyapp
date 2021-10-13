@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ image.title }}{% endblock %}
+{% block content %}
+    <h1>{{ recipe.title }}</h1>
+    {% with total_likes=recipe.users_like.count %}
+        <div class="recipe-info">
+            <a href="{% url 'recipes:update' recipe.id %}">Update</a>
+            <br>
+            Ingredients:
+            {{ recipe.ingredients|linebreaks }}
+            Steps:
+            {{ recipe.steps|linebreaks }}
+            Duration:
+            {{ recipe.duration|linebreaks }}
+            Servings:
+            {{ recipe.servings|linebreaks }}
+            <br>
+            <div>
+                <span class="count">
+                {{ total_likes }} like{{ total_likes|pluralize }}
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="recipe-likes">
+        {% for user in recipe.users_like.all %}
+            <div>
+            <p>{{ user.username }}</p>
+            </div>
+            {% empty %}
+            Nobody likes this recipe yet.
+        {% endfor %}
+        </div>
+    {% endwith %}
+{% endblock %}
